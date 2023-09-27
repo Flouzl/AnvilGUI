@@ -71,6 +71,29 @@ to prevent conflicts with other plugins. Here is an example of how to relocate t
 Note: In order to solve `<minimizeJar>` removing AnvilGUI `VerionWrapper`s from the final jar and making the library unusable,
 ensure that your `<filters>` section contains the example `<filter>` as seen above.
 
+To implement AnvilGUI on gradle you need to put this code in the build.gardle. to build your plugin you must place the order
+
+```xml
+gradle shadowJar
+```
+
+```xml
+plugins {
+    id("com.github.johnrengelman.shadow") version "8.1.1" // last version 
+}
+repositories {
+    maven {
+        name = "codemc-snapshots"
+        url = ("https://repo.codemc.io/repository/maven-snapshots/")
+    }
+}
+
+dependencies {
+    implementation ("net.wesjd:anvilgui:1.9.0-SNAPSHOT")
+}
+```
+
+
 ### In your plugin
 
 The `AnvilGUI.Builder` class is how you build an AnvilGUI.
